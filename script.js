@@ -2,12 +2,28 @@ var apikey = 'e27fa347f5134d05d053b02acb00c1153f892615';
 var slideArray = [];
 
 
-// Use this function to do stuff with your results. 
-// It is called after 'search' is executed.
 function searchCallback(results) {
 	for (var i = 0; i < 8; i++){
 		slideArray[i] = results[i];
 	}
+
+	for (i = 0; i < slideArray.length; i++){
+		var imageInfo = slideArray[i].image.small_url;
+			if(imageInfo == null || imageInfo == undefined){
+				imageInfo = "PLACE HOLDER FILL IN HERE";
+			};
+		var nameInfo = slideArray[i].name;
+		var deckInfo = slideArray[i].deck;
+			if (deckInfo == null || deckInfo == undefined){
+				deckInfo = "TOP SECRET (.... or nothing is available)";
+			};
+		$(".resultsBox").append("<div class='well slide" + i + "'><img src='" + imageInfo + "'/><p class='lead'>" + nameInfo + "</p><p>" + deckInfo + "</p></div>");
+	}
+
+
+
+
+
     console.log(results);
     console.log(slideArray[1].name);
 }
@@ -29,8 +45,7 @@ $(document).ready(function() {
 
 });
 
-// HELPER FUNCTION
-// Executes a search using 'query' and runs searchCallback on the results of a success.
+
 function search(query){
 	$(".resultsBox").append("<div class='loading'>loading results....</div>");
 
