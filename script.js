@@ -20,6 +20,7 @@ function searchCallback(results) {
 			};
 		$(".resultsBox").append("<div class='well hidden slide" + i + "'><img src='" + imageInfo + "'/><p class='lead'>" + nameInfo + "</p><p>" + deckInfo + "</p></div>");
 	};
+	$('.slide0').removeClass('hidden');
 
     console.log(results);
     console.log(slideArray[1].name);
@@ -38,24 +39,28 @@ $(document).ready(function() {
 			$(".searchBtn").click();
 		};
 	});
+	
 
 	$(".rightBtn").on('click', function(){
-		if (count < 8){
-			$('.slide' + (count-1)).addClass('hidden');
-			$('.slide' + count).removeClass('hidden');
+		$('.slide' + count).addClass('hidden');
+		if (count >= 0 && count < 7) {
 			count++;
-		} else {
+			$('.slide' + count).removeClass('hidden');
+		} else if ( count == 7 ){
 			count = 0;
+			$('.slide' + count).removeClass('hidden');
 		};
 	});
 
+
 	$(".leftBtn").on('click', function(){
-		if (count >= 0){
-			$('.slide' + count).removeClass('hidden');
-			$('.slide' + (count+1)).addClass('hidden');
+		$('.slide' + count).addClass('hidden');
+		if (count > 0 && count <= 7) {
 			count--;
-		} else {
+			$('.slide' + count).removeClass('hidden');
+		} else if ( count == 0 ){
 			count = 7;
+			$('.slide' + count).removeClass('hidden');
 		};
 	});
 
