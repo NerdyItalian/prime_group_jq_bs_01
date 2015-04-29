@@ -1,5 +1,6 @@
 var apikey = 'e27fa347f5134d05d053b02acb00c1153f892615';
 var slideArray = [];
+var count = 0;
 
 
 function searchCallback(results) {
@@ -17,12 +18,8 @@ function searchCallback(results) {
 			if (deckInfo == null || deckInfo == undefined){
 				deckInfo = "TOP SECRET (.... or nothing is available)";
 			};
-		$(".resultsBox").append("<div class='well slide" + i + "'><img src='" + imageInfo + "'/><p class='lead'>" + nameInfo + "</p><p>" + deckInfo + "</p></div>");
-	}
-
-
-
-
+		$(".resultsBox").append("<div class='well hidden slide" + i + "'><img src='" + imageInfo + "'/><p class='lead'>" + nameInfo + "</p><p>" + deckInfo + "</p></div>");
+	};
 
     console.log(results);
     console.log(slideArray[1].name);
@@ -42,8 +39,30 @@ $(document).ready(function() {
 		};
 	});
 
+	$(".rightBtn").on('click', function(){
+		if (count < 8){
+			$('.slide' + (count-1)).addClass('hidden');
+			$('.slide' + count).removeClass('hidden');
+			count++;
+		} else {
+			count = 0;
+		};
+	});
+
+	$(".leftBtn").on('click', function(){
+		if (count >= 0){
+			$('.slide' + count).removeClass('hidden');
+			$('.slide' + (count+1)).addClass('hidden');
+			count--;
+		} else {
+			count = 7;
+		};
+	});
+
+
 
 });
+
 
 
 function search(query){
