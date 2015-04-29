@@ -21,6 +21,7 @@ function searchCallback(results) {
 		$(".resultsBox").append("<div class='well hidden slide" + i + "'><img src='" + imageInfo + "'/><p class='lead'>" + nameInfo + "</p><p>" + deckInfo + "</p></div>");
 	};
 	$('.slide0').removeClass('hidden');
+	$('.resultsBox').append('<div class="btn btn-danger leftBtn ">left</div><div class="dotMover"> . . . . . . . .</div><div class="btn btn-danger rightBtn ">right</div>')
 
     console.log(results);
     console.log(slideArray[1].name);
@@ -39,9 +40,9 @@ $(document).ready(function() {
 			$(".searchBtn").click();
 		};
 	});
-	
 
-	$(".rightBtn").on('click', function(){
+
+	$(".resultsBox").on('click', ".rightBtn", function(){
 		$('.slide' + count).addClass('hidden');
 		if (count >= 0 && count < 7) {
 			count++;
@@ -53,7 +54,7 @@ $(document).ready(function() {
 	});
 
 
-	$(".leftBtn").on('click', function(){
+	$(".resultsBox").on('click', ".leftBtn", function(){
 		$('.slide' + count).addClass('hidden');
 		if (count > 0 && count <= 7) {
 			count--;
