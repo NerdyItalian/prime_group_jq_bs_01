@@ -20,11 +20,19 @@ $(document).ready(function() {
 		search(searchField);
 	});
 
+	$("#searchField").keypress(function(e){
+		if(e.which == 13){
+			$(".searchBtn").click();
+		};
+	});
+
+
 });
 
 // HELPER FUNCTION
 // Executes a search using 'query' and runs searchCallback on the results of a success.
 function search(query){
+	$(".resultsBox").append("<div class='loading'>loading results....</div>");
 
 	$.ajax ({
 	    type: 'GET',
@@ -33,6 +41,7 @@ function search(query){
 	    jsonp: 'json_callback',
 	    url: 'http://www.giantbomb.com/api/search/?format=jsonp&resources=game&api_key=' + apikey +'&query=' + encodeURI(query),
 	    complete: function() {
+	    	$(".loading").remove();
 	        console.log('ajax complete');
 	    },
 	    success: function(data) {
