@@ -1,3 +1,32 @@
-.leftBtn, .rightBtn, .dotMover {
-	display: inline;
+.row .resultsBox {
+	margin: 0 auto;
+}
+
+.leftBtn, .rightBtn, .resultsBox {
+	display: auto;
+}
+
+img {
+	max-width: 100%;
+	max-height: 275px;
+}
+
+.well {
+	height: 400px;
+	float: auto;
+	text-align: center;
+}
+
+.leftBtn, .rightBtn{
+	height: 400px;
+	margin: auto;
+}
+
+#leftArrow, #rightArrow {
+	padding-top: 158px;
+}
+
+.progress {
+	width: 50%;
+	margin: auto;
 }

@@ -18,10 +18,13 @@ function searchCallback(results) {
 			if (deckInfo == null || deckInfo == undefined){
 				deckInfo = "TOP SECRET (.... or nothing is available)";
 			};
-		$(".resultsBox").append("<div class='well hidden slide" + i + "'><img src='" + imageInfo + "'/><p class='lead'>" + nameInfo + "</p><p>" + deckInfo + "</p></div>");
+		$(".resultsBox").append("<div class='well col-md-6 hidden slide" + i + "'><img src='" + imageInfo + "'/><p class='lead'>" + nameInfo + "</p><p>" + deckInfo + "</p></div>");
 	};
+	
+	$('.resultsBox').prepend('<div class="btn col-md-1 col-md-offset-1 btn-danger leftBtn "><img id="leftArrow" src="leftarrow.png"/></div>');
 	$('.slide0').removeClass('hidden');
-	$('.resultsBox').append('<div class="btn btn-danger leftBtn ">left</div><div class="dotMover"> . . . . . . . .</div><div class="btn btn-danger rightBtn ">right</div>')
+	$('.resultsBox').append('<div class="btn col-md-1 btn-danger rightBtn"><img id="rightArrow" src="rightarrow.png"/></div>');
+
 
     console.log(results);
     console.log(slideArray[1].name);
@@ -70,9 +73,8 @@ $(document).ready(function() {
 });
 
 
-
 function search(query){
-	$(".resultsBox").append("<div class='loading'>loading results....</div>");
+	$(".resultsBox").append("<div class='progress'><div class='progress-bar progress-bar-striped active' role='progressbar' style='width: 100%'>loading results....</div></div>");
 
 	$.ajax ({
 	    type: 'GET',
@@ -81,7 +83,7 @@ function search(query){
 	    jsonp: 'json_callback',
 	    url: 'http://www.giantbomb.com/api/search/?format=jsonp&resources=game&api_key=' + apikey +'&query=' + encodeURI(query),
 	    complete: function() {
-	    	$(".loading").remove();
+	    	$(".progress").remove();
 	        console.log('ajax complete');
 	    },
 	    success: function(data) {
